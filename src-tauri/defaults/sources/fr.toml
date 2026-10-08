@@ -1,0 +1,5 @@
+# Un fichier par langue. Ajoute autant de dépôts que tu veux.
+[[repo]]
+name = "Patch FR"
+url = "https://github.com/JACKBOX-FR/jackbox-fr-main-dump"
+branch = "main"

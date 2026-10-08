@@ -1,0 +1,15 @@
+# Traductions FR du contrôleur (dump jackbox.tv). Clé = texte exact trouvé dans le dump (guillemets compris), valeur = remplacement.
+# Une valeur vide = ignorée. Pour préparer un jeu : bouton « Extraire » (génère translations/template.<fichier>.toml), puis copie ici les lignes traduites.
+# Ces textes sont communs aux ~70 contrôleurs ; les textes propres à chaque jeu restent à traduire.
+"\"You have been disconnected.\"" = "\"Vous avez été déconnecté.\""
+"\"Attempting to reconnect\"" = "\"Tentative de reconnexion\""
+"\"No connection available\"" = "\"Aucune connexion disponible\""
+"\"Thanks for playing!\"" = "\"Merci d'avoir joué !\""
+"\"View Author\"" = "\"Voir l'auteur\""
+"\"Unload Episode\"" = "\"Décharger l'épisode\""
+"\"Report Episode\"" = "\"Signaler l'épisode\""
+"\"Visit the Gallery\"" = "\"Visiter la galerie\""
+"\"Episodes Menu\"" = "\"Menu des épisodes\""
+"\"Load an episode by id:\"" = "\"Charger un épisode par identifiant :\""
+"\"Are you sure you want to delete this episode?\"" = "\"Voulez-vous vraiment supprimer cet épisode ?\""
+"\"Warning: user generated content is not rated\"" = "\"Attention : le contenu créé par les utilisateurs n'est pas classé\""

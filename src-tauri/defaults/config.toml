@@ -1,0 +1,75 @@
+# === Fichier de configuration unique : modifie ici, rien d'autre à toucher ===
+language = "fr"                      # fichier langs/<language>.toml (interface)
+game_dir = ""                       # dossier du jeu (ex: .../The Jackbox Party Pack 7)
+
+[server]
+# Serveur actif par défaut. "officiel" = jackbox.tv d'origine : rien n'est imposé, chacun choisit.
+active = "officiel"
+
+# join_url = adresse affichée aux joueurs (joinUrl). server_url (facultatif) = serveur ecast du jeu (serverUrl) :
+# sans lui, serverUrl n'est pas touché. Les entrées ci-dessous le remettent à l'officiel, sauf "jonahbox" (serveur 100 % local).
+[[server.list]]
+name = "officiel"
+join_url = "jackbox.tv"
+server_url = "ecast.jackboxgames.com"
+[[server.list]]
+name = "fr-labo"
+join_url = "laboxdejack.fr"
+server_url = "ecast.jackboxgames.com"
+[[server.list]]
+name = "local"            # dump jackbox.tv (manette FR) + ecast officiel
+join_url = "localhost:8000"
+server_url = "ecast.jackboxgames.com"
+[[server.list]]
+name = "jonahbox"         # serveur complet hors-ligne : adresses = [jonahbox].host (sans port)
+join_url = "jonahbox.local"
+server_url = "jonahbox.local"
+
+[local]
+dump_dir = "dump"                    # relatif = dans le dossier de config ; bouton « Dump » = télécharger/mettre à jour
+dump_repo = "https://github.com/JACKBOX-FR/jackbox-fr-main-dump"
+dump_branch = "main"
+dump_language = "fr"                 # translations/fr.toml appliqué au dump ("" = dump tel quel)
+bind = "0.0.0.0"                     # 127.0.0.1 = solo, 0.0.0.0 = réseau local
+port = 8000                         # 8000 comme http-server ; 80 = adresse sans port (droits admin sous Linux/macOS)
+https = false                       # certificat auto-signé (les jeux peuvent le refuser)
+upnp = false                         # ouvrir le port sur la box (si activé)
+
+[patch]
+# Ce qu'on installe : choisis librement
+audio = true        # .ogg
+subtitles = true    # .swf + .json
+text = true         # .jet
+images = true       # .png .jpg
+other = true        # le reste
+# Sélection par jeu (vide = tous). Ex: games = ["Fibbage3", "Quiplash3"]
+games = []
+
+# Dépôts de patch : un fichier par langue dans sources/
+sources_dir = "sources"
+# Dépôt "remise à zéro" (version anglaise d'origine) : à renseigner plus tard
+[restore]
+repo = ""           # ex: "https://github.com/ORG/jackbox-en-original"
+branch = "main"
+
+# API REST locale (extensions navigateur) : 127.0.0.1 uniquement, chaque extension doit être acceptée dans l'appli
+[api]
+enabled = true
+port = 6480
+
+# Dossier de chaque pack (id du serveur, ex: jpp7). Si absent : game_dir.
+[pack_dirs]
+# jpp7 = "C:/Program Files (x86)/Steam/steamapps/common/The Jackbox Party Pack 7"
+
+# Serveur 100 % local (ecast + blobcast) : fonctionne sans internet. Étapes dans l'appli, section « Serveur complet hors-ligne ».
+[jonahbox]
+repo = "https://github.com/JACKBOX-FR/Jonahbox-Dump-Ecast-Blobcast"
+branch = "main"
+dir = "jonahbox"             # relatif = dans le dossier de config
+binary = ""                  # chemin d'un jonahbox déjà compilé ("" = compilé par l'appli dans dir/target/release)
+host = "jonahbox.local"      # nom que verront le jeu et les téléphones (pas d'IP seule : le jeu la refuse)
+ip = ""                      # "" = IP du PC détectée
+cache_mode = "oneshot"       # "offline" = ne contacte jamais jackbox.tv (cache complet requis)
+https_port = 443
+http_port = 80
+blobcast_port = 38203
