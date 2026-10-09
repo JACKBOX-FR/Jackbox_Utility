@@ -25,23 +25,28 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
 
-      # Dépendances Linux requises pour Tauri v2 / v1
+      # Dépendances système requises pour Linux (Tauri)
       - if: matrix.os == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
+      # Installation des dépendances Node.js
       - run: npm install
         working-directory: jackbox_patcher
 
+      # Compilation du frontend (génère le dossier dist/out requis par Tauri)
+      - run: npm run build
+        working-directory: jackbox_patcher
+
+      # Compilation Tauri et création automatique de la Release GitHub
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           projectPath: jackbox_patcher
-          # Utilise le tag si existant, sinon utilise le nom du déclencheur manuel
           tagName: ${{ github.ref_name }}
           releaseName: 'Jackbox Utility ${{ github.ref_name }}'
           releaseDraft: true
-          # Optionnel : force la création d'un tag si vous lancez en manuel
-          includeRelease: ${{ github.ref_type == 'tag' }}
+          # Permet de forcer la création d'une release même en déclenchement manuel
+          includeRelease: true
