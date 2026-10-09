@@ -25,7 +25,7 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
 
-      # Dépendances système requises pour Linux (Tauri)
+      # Dépendances système requises pour Linux
       - if: matrix.os == 'ubuntu-22.04'
         run: |
           sudo apt-get update
@@ -33,10 +33,6 @@ jobs:
 
       # Installation des dépendances Node.js
       - run: npm install
-        working-directory: jackbox_patcher
-
-      # Compilation du frontend (génère le dossier dist/out requis par Tauri)
-      - run: npm run build
         working-directory: jackbox_patcher
 
       # Compilation Tauri et création automatique de la Release GitHub
@@ -48,5 +44,6 @@ jobs:
           tagName: ${{ github.ref_name }}
           releaseName: 'Jackbox Utility ${{ github.ref_name }}'
           releaseDraft: true
-          # Permet de forcer la création d'une release même en déclenchement manuel
           includeRelease: true
+          # Empêche l'action de chercher à exécuter un script "build" dans package.json
+          args: --no-bundle
