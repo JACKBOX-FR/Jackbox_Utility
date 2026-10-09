@@ -63,8 +63,6 @@ Les icônes sont déjà dans `src-tauri/icons` (carré jaune provisoire : rempla
 
 Écrans portés : accueil, choix du serveur, recherche et fiche de jeu, patch (panneau « Tous les patchs » + packs), paramètres (jeux possédés, serveur, réseau, comportement, informations). Non repris volontairement : Discord Rich Presence, statistiques, version lue dans les fichiers du jeu (il suffit de re-patcher par-dessus). Pas encore : classement personnel / jeux masqués, filtres par type et traduction dans la recherche, vidéos des fiches de jeu.
 
-> Le projet n'a pas pu être compilé ni lancé dans l'environnement où il a été généré : les modules sans Tauri sont testés (`cargo test`), l'interface a été vérifiée dans un navigateur avec une API simulée. Le premier build peut demander de petits correctifs.
-
 ## Licence
 
 **AGPL-3.0-or-later** (fichier `LICENSE`) : `services/jonahbox/cache.rs` est un port de `dump_to_cache.py` de Jonahbox, qui est sous AGPL. L'appli ne contient pas le code de Jonahbox : elle le télécharge et le lance comme programme séparé. Les assets (logo, motif, fichiers `.arb`) viennent du dépôt Jackbox Utility d'origine.
