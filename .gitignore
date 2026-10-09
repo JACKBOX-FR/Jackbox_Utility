@@ -1,4 +1,3 @@
 node_modules
 target
-src-tauri/icons
-src-tauri/gen
+jackbox_patcher/src-tauri/gen
